@@ -1,0 +1,2 @@
+etc/vpn-user-portal usr/share/vpn-user-portal/config
+var/lib/vpn-user-portal usr/share/vpn-user-portal/data
