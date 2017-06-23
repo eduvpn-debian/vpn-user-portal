@@ -11,6 +11,8 @@ Build-Depends:
  php-fkooman-oauth2-client,
  php-eduvpn-common,
  php-fkooman-oauth2-server,
+ php-symfony-phpunit-bridge,
+ php-twig-extensions,
  php-symfony-translation
 Standards-Version: 3.9.8
 Homepage: https://github.com/eduvpn/vpn-for-web
