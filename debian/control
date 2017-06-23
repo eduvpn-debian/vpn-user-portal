@@ -6,10 +6,12 @@ Build-Depends:
  debhelper (>= 9),
  dh-exec,
  phpab,
+ phpunit,
  pkg-php-tools,
  php-fkooman-oauth2-client,
  php-eduvpn-common,
- php-fkooman-oauth2-server
+ php-fkooman-oauth2-server,
+ php-symfony-translation
 Standards-Version: 3.9.8
 Homepage: https://github.com/eduvpn/vpn-for-web
 Vcs-Git: git://github.com/eduvpn-debian/vpn-for-web.git
@@ -29,7 +31,9 @@ Depends: ${misc:Depends},
  php-fkooman-oauth2-client,
  php-fkooman-oauth2-server,
  php-fkooman-secookie,
- php-paragonie-constant-time-encoding
+ php-paragonie-constant-time-encoding,
+ php-symfony-phpunit-bridge,
+ php-twig-extensions
 Suggests: ${phpcomposer:Debian-suggest}
 Description: ${phpcomposer:description}
 

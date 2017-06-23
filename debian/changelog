@@ -1,3 +1,11 @@
+vpn-user-portal (0.1-2zesty) zesty; urgency=medium
+
+  * add missing phpunit dependency
+  * remove correct data folder on uninstall 
+  
+
+ -- Gijs Molenaar (launchpad ppa build key) <gijs@pythonic.nl>  Fri, 23 Jun 2017 12:32:18 +0000
+
 vpn-user-portal (0.1-1zesty) zesty; urgency=medium
 
   * Initial release

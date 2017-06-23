@@ -16,7 +16,7 @@ case "$1" in
     ;;
     
     purge)
-        rm -rf /var/lib/vpn-for-web
+        rm -rf /var/lib/vpn-user-portal
     ;;
     *)
         echo "postrm called with unknown argument \`$1'" >&2
