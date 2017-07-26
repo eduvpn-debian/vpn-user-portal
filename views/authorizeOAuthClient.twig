@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+
+<html lang="en">
+{% include 'head.twig' %}
+<body>
+    {% include 'header.twig' %}
+
+    <ul class="menu">
+        <li class="active"><a href="">{% trans "Approval" %}</a>
+    </ul>
+
+    <p>{% trans "An application wants to act on your behalf." %}</p>
+    <p class="warning">{% trans "Approve <strong>only</strong> if you know and trust the application!" %}</p>
+
+    <dl>
+        <dt>{% trans "Application" %}</dt><dd><span title="{{ client_id }}">{{ display_name }}</span></dd>
+        <dt>{% trans "Permissions" %}</dt><dd>{{ scope }}</dd>
+        <dt>{% trans "Location" %}</dt><dd>{{ redirect_uri }}</dd>
+    </dl>
+
+    <form method="post">
+        <button class="error" type="submit" name="approve" value="no">{% trans "Reject" %}</button>
+        <button class="success" type="submit" name="approve" value="yes">{% trans "Approve" %}</button>
+    </form>
+
+    {% include 'footer.twig' %}
+</body>
+</html>

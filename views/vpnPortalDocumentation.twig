@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+
+<html lang="en">
+{% include 'head.twig' %}
+<body>
+    {% include 'header.twig' %}
+
+    <ul class="menu">
+      <li><a href="new">{% trans "New" %}</a></li>
+      <li><a href="configurations">{% trans "Configurations" %}</a></li>
+      <li><a href="account">{% trans "Account" %}</a></li>
+      <li class="active"><a href="documentation">{% trans "Documentation" %}</a></li>
+    </ul>
+
+    <h2>Getting Started</h2>
+    <p>
+        Follow these steps:
+    </p>
+
+    <ol>
+        <li>Choose and download a VPN application from the list below;</li>
+        <li>Load the configuration file, obtained <a href="new">here</a>, in 
+            the application.</li>
+    </ol>
+
+    <h2>Application</h2>
+    <h3>Windows</h3>
+
+        <ol>
+        <li>Download the <a target="_blank" href="https://openvpn.net/index.php/open-source/downloads.html">OpenVPN Community client</a>, make sure you download "Installer, Windows Vista and later";</li>
+        <li>Install the OpenVPN Community client</li>
+        <li>(Optionally) read the documentation <a target="_blank" href="https://github.com/OpenVPN/openvpn-gui/">here</a>;</li>
+        <li>Start OpenVPN (a Desktop icon is created automatically);
+        <li>Import the downloaded configuration by right clicking on OpenVPN's tray icon and choosing "Import".
+        </ol>
+
+    <p>
+
+        <img src="img/openvpn_windows.png" alt="OpenVPN on Windows" title="OpenVPN on Windows">
+
+        <em>Note</em>: OpenVPN will automatically start on Windows start-up, it will <em>not</em> automatically connect!
+    </p>
+
+    <h3>macOS</h3>
+    <p>
+        Download <a target="_blank" href="https://tunnelblick.net/">tunnelblick</a>. 
+        Read the <a target="_blank" href="https://tunnelblick.net/czQuick.html">Quick Start Guide</a>.
+    </p>
+
+    <h3>Android</h3>
+        Install <a target="_blank" href="https://play.google.com/store/apps/details?id=de.blinkt.openvpn">OpenVPN for Android</a>, 
+        also available via <a target="_blank" href="https://f-droid.org/repository/browse/?fdid=de.blinkt.openvpn">F-Droid</a>. 
+        The proprietary <a target="_blank" href="https://play.google.com/store/apps/details?id=net.openvpn.openvpn">OpenVPN Connect</a> can also be used. See the OpenVPN Connect <a target="_blank" href="https://docs.openvpn.net/docs/openvpn-connect/openvpn-connect-android-faq.html">FAQ</a>.
+
+    <h3>iOS</h3>
+    <p>
+        Install <a target="_blank" href="https://itunes.apple.com/us/app/openvpn-connect/id590379981">OpenVPN Connect</a>. 
+        A <a target="_blank" href="https://docs.openvpn.net/docs/openvpn-connect/openvpn-connect-ios-faq.html">FAQ</a> is available.
+    </p>
+     
+    <h3>Linux</h3>
+    <p>
+        Importing the configuration in NetworkManager >= 1.2 works. This version of NetworkManager is available in <a target="_blank" href="https://getfedora.org/">Fedora</a> >= 24 and <a target="_blank" href="http://www.ubuntu.com/desktop">Ubuntu</a> >= 16.04 LTS. On Ubuntu there is an <a target="_blank" href="https://bugs.launchpad.net/ubuntu/+source/network-manager/+bug/1211110">issue</a> with DNS. A workaround is described <a target="_blank" href="https://bugs.launchpad.net/ubuntu/+source/network-manager/+bug/1211110/comments/11">here</a>.
+    </p>
+
+    <h2>Two-factor Authentication</h2>
+    <p>
+        Two-factor authentication (2FA) can be used to protect your account from 
+        unauthorized access. It works by asking for an additional <em>key</em>
+        that needs to be provided on every login to the portal. In addition,
+        administrators can also enable 2FA for connecting to the VPN. 
+    </p>    
+    <p>
+        When connecting to a 2FA enabled 
+        VPN, use the user name <code>totp</code> (for TOTP), or <code>yubi</code> (for a YubiKey) depending
+        on which 2FA method is used, and provide the generated key as 
+        the password. Do <em>not</em> store the password, as it will be 
+        different every time the connection is established.
+    </p>
+    <p class="plain">
+        If you enroll with both TOTP and a YubiKey, the YubiKey will take preference for authenticating to the portal!
+    </p>
+    <p>
+        Contact support if you lost your second factor.
+    </p>
+
+    <h3>TOTP</h3> 
+    <p>
+        The TOTP method works by registering a <em>secret</em> in an application, e.g. running on your mobile phone. You can use <a href="https://fedorahosted.org/freeotp/">FreeOTP</a> or <a href="https://en.wikipedia.org/wiki/Google_Authenticator">Google Authenticator</a> on your mobile device. FreeOTP is recommended.
+    </p>
+    
+    <ul>
+        <li>Android (<a target="_blank" href="https://play.google.com/store/apps/details?id=org.fedorahosted.freeotp">Google Play Store</a>, <a target="_blank" href="https://f-droid.org/repository/browse/?fdid=org.fedorahosted.freeotp">F-Droid</a>)</li>
+        <li>iOS (<a target="_blank" href="https://itunes.apple.com/us/app/freeotp/id872559395">iTunes</a>)</li>
+    </ul>
+    <p>
+        Enroll for TOTP <a href="totp">here</a>.
+    </p>
+
+    <h3>YubiKey</h3>
+    <p>
+        YubiKeys are physical tokens that need to be plugged into the USB port
+        of a computer. They have a button that will provide a OTP when pressed.
+    </p>
+
+    <p>
+        Enroll with a YubiKey <a href="yubi">here</a>.
+    </p>
+
+    <h2>Recommendations for using the VPN</h2>
+    <p>
+        At the very least, use the latest version of 
+        <a href="https://getfirefox.com">Mozilla Firefox</a> to browse the 
+        web, and use the following add-ons:
+    </p>
+
+    <ul>
+        <li>
+            <a href="https://addons.mozilla.org/en-US/firefox/addon/ublock-origin/">uBlock Origin</a> 
+            to block web trackers and advertisements to limit the exposure 
+            to malware;
+        </li>
+        <li>
+            <a href="https://addons.mozilla.org/en-US/firefox/addon/https-everywhere/">HTTPS Everywhere</a> 
+            to use HTTPS whenever possible when the sites themselves 
+            provide HTTPS, but by default do not send the browser to the 
+            HTTPS version of the site.
+        </li>
+    </ul>
+
+    <p>
+        Make sure you <em>disable</em> WebRTC to avoid leaking your (local)
+        non-VPN addresses by typing <code>about:config</code> in the URL bar, 
+        looking for the <code>media.peerconnection.enabled</code> key and 
+        setting it to <code>false</code>.
+    </p>
+
+    <h2>Privacy and Trust</h2>
+    <p>
+        Using a VPN service is not a magical solution to remain safe and 
+        anonymous when using the Internet, nor should you use this service 
+        under the assumption you can never be traced back. This is not only 
+        true for this VPN service, but for all of them. Better safe than sorry!
+    </p>
+    <p>
+        If you want to obtain a higher degree of anonymity and security you 
+        should consider using software like the 
+        <a target="_blank" href="https://www.torproject.org/">Tor Browser</a>, 
+        or preferably <a target="_blank" href="https://tails.boum.org/">Tails</a>. 
+        Even then, caution is required. Please make sure you read all 
+        accompanying documentation and warnings there!
+    </p>
+    <p>
+        Most smartphones and computers will use the Internet connection 
+        before the VPN can be activated. On smartphones this problem can only
+        be solved by <em>rooting</em> or <em>jail breaking</em> your phone and
+        installing applications on it that tightly control the network traffic. 
+        On a computer this can be dealt with by using Tails mentioned above.
+    </p>
+
+    {% include 'footer.twig' %}
+</body>
+</html>

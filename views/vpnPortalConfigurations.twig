@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+{% include 'head.twig' %}
+<body>
+    {% include 'header.twig' %}
+
+    <ul class="menu">
+      <li><a href="new">{% trans "New" %}</a></li>
+      <li class="active"><a href="configurations">{% trans "Configurations" %}</a></li>
+      <li><a href="account">{% trans "Account" %}</a></li>
+      <li><a href="documentation">{% trans "Documentation" %}</a></li>
+    </ul>
+
+    {% if userCertificateList is empty %}
+        <p class="plain">
+            {% trans %}
+                There are currently no configurations. <a href="new">Create</a> one.
+            {% endtrans %}
+        </p>                    
+    {% else %}
+        <table>
+            <thead>
+                <tr><th>{% trans "Name" %}</th><th>{% trans "Issued" %} ({{ date()|date('T') }})</th><th>{% trans "Expires" %} ({{ date()|date('T') }})</th><th class="text-right">{% trans "Status" %}</th><th></th></tr> 
+            </thead>
+            <tbody>
+            {% for userCertificate in userCertificateList %}
+                <tr>
+                    <td>{{ userCertificate.display_name }}</td>
+                    <td>{{ userCertificate.valid_from|date('Y-m-d H:i:s') }}</td>
+                    <td>{{ userCertificate.valid_to|date('Y-m-d H:i:s') }}</td>
+                    <td class="text-right">
+                        {% if userCertificate.is_disabled %}
+                            <span class="error">{% trans "Disabled" %}</span>
+                        {% else %}
+                            <span class="success">{% trans "Active" %}</span>
+                        {% endif %}
+                    </td>
+                    <td class="text-right">
+                        <form method="post" class="inline" action="deleteCertificate">
+                            <input type="hidden" name="commonName" value="{{ userCertificate.common_name }}">
+                            <button type="submit" class="error">{% trans "Delete" %}</button>
+                        </form>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
+
+    {% include 'footer.twig' %}
+</body>
+</html>

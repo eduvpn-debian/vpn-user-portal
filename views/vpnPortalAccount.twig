@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+{% include 'head.twig' %}
+<body>
+    {% include 'header.twig' %}
+
+    <ul class="menu">
+      <li><a href="new">{% trans "New" %}</a></li>
+      <li><a href="configurations">{% trans "Configurations" %}</a></li>
+      <li class="active"><a href="account">{% trans "Account" %}</a></li>
+      <li><a href="documentation">{% trans "Documentation" %}</a></li>
+    </ul>
+
+    <h2>{% trans "User Info" %}</h2>
+    <table>
+        <tr>
+            <th>{% trans "ID" %}</th>
+            <td><code>{{ userId }}</code></td>
+            <td></td>
+        </tr>
+        <tr>
+            <th>{% trans "Group Membership(s)" %}</th>
+            <td>
+                {% if userGroups is empty %}
+                    <em>{% trans "Not a member of any group." %}</em>
+                {% else %}
+                    <ul class="simple">
+                        {% for group in userGroups %}
+                            <li title="{{ group.id }}">{{ group.displayName }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </td>
+            <td></td>
+        </tr>
+    </table>
+
+    <h2>{% trans "Two-factor Authentication" %}</h2>
+
+    <table>
+
+        <tr>
+            <th>{% trans "TOTP" %}</th>
+            <td>
+                {% if hasTotpSecret %}
+                    <span class="success">{% trans "Enrolled" %}</span>
+                {% else %}
+                    <a href="totp">Enroll</a>
+                {% endif %}
+            </td>
+        </tr>
+
+        <tr>
+            <th>{% trans "YubiKey" %}</th>
+            <td>
+                {% if yubiKeyId %}
+                    <span class="success">{% trans "Enrolled" %}</span>
+                    <span title="Registered YubiKey ID" class="plain">{{ yubiKeyId }}</span>
+                {% else %}
+                    <a href="yubi">Enroll</a>
+                {% endif %}
+            </td>
+        </tr>
+
+        {% if twoFactorEnabledProfiles is not empty %}
+        <tr>
+            <th>{% trans "Profiles" %}</th>
+            <td>
+                <ul class="simple">
+                {% for twoFactorEnabledProfile in twoFactorEnabledProfiles %}
+                    <li>{{ twoFactorEnabledProfile }}</li>
+                {% endfor %}
+                </ul>
+            </td>
+        </tr>
+        {% endif %}
+    </table>
+
+    <h2>{% trans "Authorized Applications" %}</h2>
+
+    {% if authorizedClients is empty %}
+        <p class="plain">{% trans "No applications have access to your account." %}</p>
+    {% else %}
+    <table>
+        <thead>
+            <tr><th>{% trans "Name" %}</th><th>{% trans "Scope" %}</th><th></th></tr>
+        </thead>
+        <tbody>
+            {% for client in authorizedClients %}
+            <tr>
+                <td><span title="{{ client.client_id }}">{% if client.display_name %}{{ client.display_name }}{% else %}<em>Unregistered Client</em>{% endif %}</span></td>
+                <td><code>{{ client.scope }}</code></td>
+                <td class="text-right">
+                    <form method="post" action="removeClientAuthorization">
+                        <input type="hidden" name="client_id" value="{{ client.client_id }}">
+                        <input type="hidden" name="scope" value="{{ client.scope }}">
+                        <button class="error">{% trans "Revoke" %}</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+
+    {% include 'footer.twig' %}
+</body>
+</html>

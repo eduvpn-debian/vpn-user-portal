@@ -1,0 +1,103 @@
+<?php
+
+return [
+    // set secureCookie flag, so browser only sends them over HTTPS
+    'secureCookie' => true,
+
+    // template caching for performance improvements
+    'enableTemplateCache' => true,
+
+    'authMethod' => 'FormAuthentication',
+    //'authMethod' => 'MellonAuthentication',
+
+    'FormAuthentication' => [
+        // use vpn-user-portal-add-user to add users!
+    ],
+
+    'MellonAuthentication' => [
+        'attribute' => 'MELLON_NAME_ID',
+        //'attribute' => 'MELLON_eduPersonTargetedID',
+
+        // add the entityID of the IdP to the user ID. This MUST be enabled
+        // if multiple IdPs are used and the attribute used for the user ID is 
+        // not enforced to be unique among the different IdPs
+        'addEntityID' => false,
+    ],
+
+    // Connection to vpn-server-api
+    'apiUser' => 'vpn-user-portal',
+    'apiPass' => 'XXX-vpn-user-portal/vpn-server-api-XXX',
+    'apiUri' => 'http://localhost/vpn-server-api/api.php',
+
+    'enableVoot' => false,
+    //'enableVoot' => true,
+    'Voot' => [
+        'clientId' => 'my_client_id',
+        'clientSecret' => 'my_client_secret',
+        'authorizationEndpoint' => 'https://authz.surfconext.nl/oauth/authorize',
+        'tokenEndpoint' => 'https://authz.surfconext.nl/oauth/token',
+    ],
+
+    // supported languages in the UI, the first one mentioned is the default
+    'supportedLanguages' => [
+        'en_US' => 'English',
+        'nl_NL' => 'Nederlands',
+        //'nb_NO' => 'norsk bokmål',
+        //'fr_FR' => 'Français',
+        //'de_DE' => 'Deutsch',
+    ],
+
+    // If you have "port sharing" for TCP/443 with the web server, enable the
+    // following
+    //'addVpnProtoPorts' => ['tcp/443'],
+
+    'Api' => [
+        // access_tokens expire after 3 months
+        'tokenExpiry' => 3 * 31 * 24 * 3600,
+
+        // OAuth 2.0 consumers
+        'consumerList' => [
+            // API 1 Apps
+            // eduVPN for Android
+            'nl.eduvpn.app' => [
+                'redirect_uri' => 'nl.eduvpn.app://import/callback',
+                'response_type' => 'token',
+                'display_name' => 'eduVPN for Android',
+            ],
+            // API 2 Apps
+            // eduVPN for Web
+            'net.tuxed.eduvpn' => [
+                'redirect_uri' => 'https://eduvpn.tuxed.net/vpn-for-web/callback',
+                'response_type' => 'code',
+                'display_name' => 'eduVPN for Web',
+            ],
+            // eduVPN for Windows
+            'nl.eduvpn.app.windows' => [
+                'redirect_uri' => [
+                    'http://127.0.0.1:{PORT}/callback',
+                    'http://[::1]:{PORT}/callback',
+                    'nl.eduvpn.app.windows:/api/callback',
+                ],
+                'response_type' => 'code',
+                'display_name' => 'eduVPN for Windows',
+            ],
+            // eduVPN for Android
+            //'nl.eduvpn.app.android' => [
+            //    'redirect_uri' => 'nl.eduvpn.app.android:/api/callback',
+            //    'response_type' => 'code',
+            //    'display_name' => 'eduVPN for Android',
+            //],
+        ],
+
+        // List of foreign OAuth *PUBLIC* keys of VPN instances for which we 
+        // want to allow guest usage
+        'foreignKeys' => [
+            //'vpn.example.org' => 'AABBCC==',
+            //'vpn.example.com' => 'BBCCDD==',
+        ],
+
+        // Fetch a list of foreign public keys automatically
+        //'foreignKeyListSource' => 'https://static.eduvpn.nl/federation.json',
+        //'foreignKeyListPublicKey' => 'E5On0JTtyUVZmcWd+I/FXRm32nSq8R2ioyW7dcu/U88=',
+    ],
+];
