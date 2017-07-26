@@ -1,0 +1,11 @@
+vpn-user-portal (0.1-2) stable; urgency=medium
+
+  * create default config dir
+
+ -- Gijs Molenaar (launchpad ppa build key) <gijs@pythonic.nl>  Fri, 30 Jun 2017 15:32:55 +0200
+
+vpn-user-portal (0.1-1) stable; urgency=medium
+
+  * initial release
+
+ -- Gijs Molenaar (launchpad ppa build key) <gijs@pythonic.nl>  Fri, 23 Jun 2017 13:51:09 +0000
