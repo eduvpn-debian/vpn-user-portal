@@ -22,7 +22,7 @@ override_dh_auto_build:
 override_dh_auto_test:
 	phpab -o tests/autoload.php src tests
 	echo "$${REQUIRES}" >> tests/autoload.php
-	#phpunit --bootstrap=tests/autoload.php
+	phpunit --bootstrap=tests/autoload.php
 
 %:
 	dh $@ --with phpcomposer

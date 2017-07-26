@@ -1,11 +1,11 @@
 Description: fix path to autoload script
 
 
---- vpn-user-portal-0.1.orig/bin/add-user.php
-+++ vpn-user-portal-0.1/bin/add-user.php
-@@ -16,7 +16,8 @@
-  *  You should have received a copy of the GNU Affero General Public License
-  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+--- vpn-user-portal-1.0.0.orig/bin/add-user.php
++++ vpn-user-portal-1.0.0/bin/add-user.php
+@@ -7,7 +7,8 @@
+  * Copyright: 2016-2017, The Commons Conservancy eduVPN Programme
+  * SPDX-License-Identifier: AGPL-3.0+
   */
 -require_once sprintf('%s/vendor/autoload.php', dirname(__DIR__));
 +$baseDir = '/usr/share/vpn-user-portal';
@@ -13,7 +13,7 @@ Description: fix path to autoload script
  
  use SURFnet\VPN\Common\CliParser;
  use SURFnet\VPN\Common\Config;
-@@ -39,7 +40,7 @@ try {
+@@ -30,7 +31,7 @@ try {
  
      $instanceId = $opt->hasItem('instance') ? $opt->getItem('instance') : 'default';
  
@@ -22,11 +22,11 @@ Description: fix path to autoload script
      $config = Config::fromFile($configFile);
      $configData = $config->toArray();
      $passwordHash = password_hash($opt->getItem('pass'), PASSWORD_DEFAULT);
---- vpn-user-portal-0.1.orig/bin/foreign-key-list-fetcher.php
-+++ vpn-user-portal-0.1/bin/foreign-key-list-fetcher.php
-@@ -16,7 +16,8 @@
-  *  You should have received a copy of the GNU Affero General Public License
-  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+--- vpn-user-portal-1.0.0.orig/bin/foreign-key-list-fetcher.php
++++ vpn-user-portal-1.0.0/bin/foreign-key-list-fetcher.php
+@@ -7,7 +7,8 @@
+  * Copyright: 2016-2017, The Commons Conservancy eduVPN Programme
+  * SPDX-License-Identifier: AGPL-3.0+
   */
 -require_once sprintf('%s/vendor/autoload.php', dirname(__DIR__));
 +$baseDir = '/usr/share/vpn-user-portal';
@@ -34,7 +34,7 @@ Description: fix path to autoload script
  
  use fkooman\OAuth\Client\Http\CurlHttpClient;
  use SURFnet\VPN\Common\CliParser;
-@@ -39,14 +40,14 @@ try {
+@@ -30,14 +31,14 @@ try {
  
      $instanceId = $opt->hasItem('instance') ? $opt->getItem('instance') : 'default';
  
@@ -51,11 +51,11 @@ Description: fix path to autoload script
          $foreignKeyListFetcher->update(new CurlHttpClient(), $publicKeysSource, $publicKeysSourcePublicKey);
      }
  } catch (Exception $e) {
---- vpn-user-portal-0.1.orig/bin/init.php
-+++ vpn-user-portal-0.1/bin/init.php
-@@ -16,7 +16,8 @@
-  *  You should have received a copy of the GNU Affero General Public License
-  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+--- vpn-user-portal-1.0.0.orig/bin/init.php
++++ vpn-user-portal-1.0.0/bin/init.php
+@@ -7,7 +7,8 @@
+  * Copyright: 2016-2017, The Commons Conservancy eduVPN Programme
+  * SPDX-License-Identifier: AGPL-3.0+
   */
 -require_once sprintf('%s/vendor/autoload.php', dirname(__DIR__));
 +$baseDir = '/usr/share/vpn-user-portal';
@@ -63,20 +63,20 @@ Description: fix path to autoload script
  
  use SURFnet\VPN\Common\CliParser;
  use SURFnet\VPN\Common\FileIO;
-@@ -37,7 +38,7 @@ try {
+@@ -28,7 +29,7 @@ try {
  
      $instanceId = $opt->hasItem('instance') ? $opt->getItem('instance') : 'default';
+     FileIO::createDir(
+-        sprintf('%s/data/%s', dirname(__DIR__), $instanceId),
++        sprintf('%s/data/%s', $baseDir, $instanceId),
+         0700
+     );
      $keyPairData = base64_encode(\Sodium\crypto_sign_keypair());
--    $keyPairFile = sprintf('%s/data/%s/OAuth.key', dirname(__DIR__), $instanceId);
-+    $keyPairFile = sprintf('%s/data/%s/OAuth.key', $baseDir, $instanceId);
-     FileIO::writeFile($keyPairFile, $keyPairData);
- } catch (Exception $e) {
-     echo sprintf('ERROR: %s', $e->getMessage()).PHP_EOL;
---- vpn-user-portal-0.1.orig/bin/show-public-key.php
-+++ vpn-user-portal-0.1/bin/show-public-key.php
-@@ -16,7 +16,8 @@
-  *  You should have received a copy of the GNU Affero General Public License
-  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+--- vpn-user-portal-1.0.0.orig/bin/show-public-key.php
++++ vpn-user-portal-1.0.0/bin/show-public-key.php
+@@ -7,7 +7,8 @@
+  * Copyright: 2016-2017, The Commons Conservancy eduVPN Programme
+  * SPDX-License-Identifier: AGPL-3.0+
   */
 -require_once sprintf('%s/vendor/autoload.php', dirname(__DIR__));
 +$baseDir = '/usr/share/vpn-user-portal';
@@ -84,7 +84,7 @@ Description: fix path to autoload script
  
  use SURFnet\VPN\Common\CliParser;
  use SURFnet\VPN\Common\FileIO;
-@@ -36,7 +37,7 @@ try {
+@@ -27,7 +28,7 @@ try {
      }
  
      $instanceId = $opt->hasItem('instance') ? $opt->getItem('instance') : 'default';
