@@ -1,24 +1,16 @@
 <?php
+
 /**
- *  Copyright (C) 2016 SURFnet.
+ * eduVPN - End-user friendly VPN.
  *
- *  This program is free software: you can redistribute it and/or modify
- *  it under the terms of the GNU Affero General Public License as
- *  published by the Free Software Foundation, either version 3 of the
- *  License, or (at your option) any later version.
- *
- *  This program is distributed in the hope that it will be useful,
- *  but WITHOUT ANY WARRANTY; without even the implied warranty of
- *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- *  GNU Affero General Public License for more details.
- *
- *  You should have received a copy of the GNU Affero General Public License
- *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ * Copyright: 2016-2017, The Commons Conservancy eduVPN Programme
+ * SPDX-License-Identifier: AGPL-3.0+
  */
 
 namespace SURFnet\VPN\Portal\Tests;
 
 use DateTime;
+use fkooman\OAuth\Server\ClientInfo;
 use fkooman\OAuth\Server\OAuthServer;
 use fkooman\OAuth\Server\Storage;
 use PDO;
@@ -63,7 +55,7 @@ class OAuthTokenModuleTest extends PHPUnit_Framework_TestCase
                     return false;
                 }
 
-                return $config->getSection('apiConsumers')->getItem($clientId);
+                return new ClientInfo($config->getSection('apiConsumers')->getItem($clientId));
             },
             '2y5vJlGqpjTzwr3Ym3UqNwJuI1BKeLs53fc6Zf84kbYcP2/6Ar7zgiPS6BL4bvCaWN4uatYfuP7Dj/QvdctqJRw/b/oCvvOCI9LoEvhu8JpY3i5q1h+4/sOP9C91y2ol'
         );
