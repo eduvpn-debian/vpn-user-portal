@@ -1,6 +1,5 @@
 Description: fix path to autoload script
 
-
 --- vpn-user-portal-1.0.0.orig/bin/add-user.php
 +++ vpn-user-portal-1.0.0/bin/add-user.php
 @@ -7,7 +7,8 @@
@@ -63,7 +62,7 @@ Description: fix path to autoload script
  
  use SURFnet\VPN\Common\CliParser;
  use SURFnet\VPN\Common\FileIO;
-@@ -28,7 +29,7 @@ try {
+@@ -28,11 +29,11 @@ try {
  
      $instanceId = $opt->hasItem('instance') ? $opt->getItem('instance') : 'default';
      FileIO::createDir(
@@ -72,6 +71,11 @@ Description: fix path to autoload script
          0700
      );
      $keyPairData = base64_encode(\Sodium\crypto_sign_keypair());
+-    $keyPairFile = sprintf('%s/data/%s/OAuth.key', dirname(__DIR__), $instanceId);
++    $keyPairFile = sprintf('%s/data/%s/OAuth.key', $baseDir, $instanceId);
+     FileIO::writeFile($keyPairFile, $keyPairData);
+ } catch (Exception $e) {
+     echo sprintf('ERROR: %s', $e->getMessage()).PHP_EOL;
 --- vpn-user-portal-1.0.0.orig/bin/show-public-key.php
 +++ vpn-user-portal-1.0.0/bin/show-public-key.php
 @@ -7,7 +7,8 @@
