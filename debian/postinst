@@ -1,7 +1,6 @@
 #!/bin/sh
 
-#DEBHELPER
-
 chown -R www-data:www-data /var/lib/vpn-user-portal
 chmod -R 700 /var/lib/vpn-user-portal
 
+#DEBHELPER#

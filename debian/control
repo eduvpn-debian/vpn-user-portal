@@ -35,7 +35,9 @@ Depends: ${misc:Depends},
  php-fkooman-secookie,
  php-paragonie-constant-time-encoding,
  php-symfony-phpunit-bridge,
- php-twig-extensions
+ php-twig-extensions,
+ php-cli
 Suggests: ${phpcomposer:Debian-suggest}
 Description: ${phpcomposer:description}
+ The eduVPN user portal project
 
