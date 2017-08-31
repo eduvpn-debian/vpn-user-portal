@@ -20,7 +20,7 @@ Vcs-Git: git://github.com/eduvpn-debian/vpn-for-web.git
 Vcs-Browser: https://github.com/eduvpn-debian/vpn-for-web/
 
 Package: vpn-user-portal
-Architecture: any
+Architecture: all
 # TODO: generates wrong dependencies
 #Depends: ${misc:Depends}, ${phpcomposer:Debian-require}
 Depends: ${misc:Depends},
