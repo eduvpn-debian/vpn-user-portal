@@ -116,7 +116,7 @@ class VpnPortalModule implements ServiceModuleInterface
                 // make sure the profileId is in the list of allowed profiles for this
                 // user, it would not result in the ability to use the VPN, but
                 // better prevent it early
-                if (!in_array($profileId, array_keys($profileList))) {
+                if (!in_array($profileId, array_keys($profileList), true)) {
                     throw new HttpException('no permission to create a configuration for this profileId', 400);
                 }
 
@@ -237,8 +237,8 @@ class VpnPortalModule implements ServiceModuleInterface
                     if (false !== $clientInfo = call_user_func($this->getClientInfo, $v['client_id'])) {
                         // client_id as name in case no 'display_name' is provided
                         $displayName = $v['client_id'];
-                        if (array_key_exists('display_name', $clientInfo)) {
-                            $displayName = $clientInfo['display_name'];
+                        if (null !== $clientInfo->getDisplayName()) {
+                            $displayName = $clientInfo->getDisplayName();
                         }
                     }
                     $authorizedClients[$k]['display_name'] = $displayName;
@@ -339,7 +339,7 @@ class VpnPortalModule implements ServiceModuleInterface
         // if any of the groups in userGroups is part of aclGroupList return
         // true, otherwise false
         foreach ($userGroups as $userGroup) {
-            if (in_array($userGroup['id'], $aclGroupList)) {
+            if (in_array($userGroup['id'], $aclGroupList, true)) {
                 return true;
             }
         }
