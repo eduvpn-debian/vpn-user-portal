@@ -8,12 +8,20 @@ Build-Depends:
  phpab,
  phpunit,
  pkg-php-tools,
+ php-common,
  php-fkooman-oauth2-client,
  php-eduvpn-common,
  php-fkooman-oauth2-server,
  php-symfony-phpunit-bridge,
  php-twig-extensions,
- php-symfony-translation
+ php-symfony-translation,
+ php-bacon-qr-code,
+ php-paragonie-constant-time-encoding,
+ php-eduvpn-common,
+ php-json,
+ php-libsodium,
+ php-mbstring,
+ php-fkooman-secookie
 Standards-Version: 3.9.8
 Homepage: https://github.com/eduvpn/vpn-for-web
 Vcs-Git: git://github.com/eduvpn-debian/vpn-for-web.git
