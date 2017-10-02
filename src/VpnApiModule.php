@@ -90,10 +90,19 @@ class VpnApiModule implements ServiceModuleInterface
                 $hasTotpSecret = $this->serverClient->get('has_totp_secret', ['user_id' => $userId]);
                 $isDisabledUser = $this->serverClient->get('is_disabled_user', ['user_id' => $userId]);
 
+                $twoFactorTypes = [];
+                if ($hasYubiKeyId) {
+                    $twoFactorTypes[] = 'yubi';
+                }
+                if ($hasTotpSecret) {
+                    $twoFactorTypes[] = 'totp';
+                }
+
                 return new ApiResponse(
                     'user_info',
                     [
                         'two_factor_enrolled' => $hasYubiKeyId || $hasTotpSecret,
+                        'two_factor_enrolled_with' => $twoFactorTypes,
                         'is_disabled' => $isDisabledUser,
                     ]
                 );
@@ -144,7 +153,7 @@ class VpnApiModule implements ServiceModuleInterface
                     $availableProfiles[] = $profileId;
                 }
 
-                if (!in_array($requestedProfileId, $availableProfiles)) {
+                if (!in_array($requestedProfileId, $availableProfiles, true)) {
                     return new ApiErrorResponse('profile_config', 'user has no access to this profile');
                 }
 
@@ -266,7 +275,7 @@ class VpnApiModule implements ServiceModuleInterface
         // if any of the groups in userGroups is part of aclGroupList return
         // true, otherwise false
         foreach ($userGroups as $userGroup) {
-            if (in_array($userGroup['id'], $aclGroupList)) {
+            if (in_array($userGroup['id'], $aclGroupList, true)) {
                 return true;
             }
         }
