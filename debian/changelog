@@ -1,3 +1,9 @@
+vpn-user-portal (1.0.6-3) stable; urgency=medium
+
+  * fix lintian errors and warnings
+
+ -- Gijs Molenaar (launchpad ppa build key) <gijs@pythonic.nl>  Fri, 13 Oct 2017 17:56:17 +0200
+
 vpn-user-portal (1.0.6-2) stable; urgency=medium
 
   * add missing php-bacon-qr-code build dependency

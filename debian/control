@@ -46,6 +46,6 @@ Depends: ${misc:Depends},
  php-twig-extensions,
  php-cli
 Suggests: ${phpcomposer:Debian-suggest}
-Description: ${phpcomposer:description}
+Description: eduVPN user portal
  The eduVPN user portal project
 
