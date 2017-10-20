@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.0.7 (2017-10-17)
+- add Danish translation (provided by Tangui Coulouarn)
+- update Documentation page (remove screenshot, 2FA updates)
+- only have English as UI language by default as we have multiple languages 
+  supported now, it does not make sense to favor Dutch
+
 ## 1.0.6 (2017-09-18)
 - API call `user_info` also exposes `two_factor_enrolled_with` now to show 
   which 2FA methods the user is enrolled for
