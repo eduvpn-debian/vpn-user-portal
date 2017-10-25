@@ -60,17 +60,27 @@
         Install <a target="_blank" href="https://itunes.apple.com/us/app/openvpn-connect/id590379981">OpenVPN Connect</a>. 
         A <a target="_blank" href="https://docs.openvpn.net/docs/openvpn-connect/openvpn-connect-ios-faq.html">FAQ</a> is available.
     </p>
+    <p>
+        You may want to enable <code>Seamless tunnel (iOS8+)</code> in the OpenVPN Settings. 
+        It will try to keep the VPN tunnel active as much as possible. See the FAQ for more details.
+    </p>
      
     <h3>Linux</h3>
     <p>
-        Importing the VPN configuration in NetworkManager >= 1.2 works. 
-        This version of NetworkManager is available in 
-        <a target="_blank" href="https://getfedora.org/">Fedora</a> >= 24 and 
-        <a target="_blank" href="http://www.ubuntu.com/desktop">Ubuntu</a> 
-        >= 16.04 LTS. On Ubuntu there is an 
-        <a target="_blank" href="https://bugs.launchpad.net/ubuntu/+source/network-manager/+bug/1211110">issue</a> 
-        with DNS. A workaround is described 
-        <a target="_blank" href="https://bugs.launchpad.net/ubuntu/+source/network-manager/+bug/1211110/comments/11">here</a>.
+        Importing the VPN configuration in NetworkManager works fine on modern 
+        Linux distributions. The following distributions were tested and work:
+    </p>
+    <ul>
+        <li><a href="https://getfedora.org/">Fedora</a> >= 24;</li>
+        <li><a href="https://www.centos.org/">CentOS</a> >= 7 (<code>yum install NetworkManager-openvpn-gnome</code>);</li>
+        <li><a href="https://www.debian.org/">Debian</a> >= 9 (<code>apt install network-manager-openvpn-gnome</code>);</li>
+        <li><a href="https://www.ubuntu.com/">Ubuntu</a> >= 17.10 (<code>apt install network-manager-openvpn-gnome</code>);</li>
+    </ul>
+    
+    <p>
+        NetworkManager does have some issues with 
+        <a href="https://en.wikipedia.org/wiki/DNS_leak">leaking DNS</a> for 
+        which currently no easy work-around is available.
     </p>
 
     <h2>Two-factor Authentication</h2>
