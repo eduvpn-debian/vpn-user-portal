@@ -1,3 +1,10 @@
+vpn-user-portal (1.0.10-1) stable; urgency=medium
+
+  * New upstream version 1.0.10
+  * symlink, don't patch
+
+ -- Gijs Molenaar (launchpad ppa build key) <gijs@pythonic.nl>  Wed, 08 Nov 2017 09:49:59 +0100
+
 vpn-user-portal (1.0.8-1) stable; urgency=medium
 
   [ Gijs Molenaar ]
