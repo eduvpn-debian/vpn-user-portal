@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.10 (2017-11-06)
+- update documentation, recommend against jail breaking / rooting
+- federated identity issuer can also contain numbers
+
+## 1.0.9 (2017-10-26)
+- support PHP 7.2 (sodium)
+- refactor binary scripts
+
 ## 1.0.8 (2017-10-24)
 - update iOS documentation, mention seamless tunnel
 - update Linux documentation, mention various tested distributions
