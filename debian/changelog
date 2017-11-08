@@ -1,3 +1,9 @@
+vpn-user-portal (1.0.10-2) stable; urgency=medium
+
+  * remove old bin install statements
+
+ -- Gijs Molenaar (launchpad ppa build key) <gijs@pythonic.nl>  Wed, 08 Nov 2017 10:58:09 +0100
+
 vpn-user-portal (1.0.10-1) stable; urgency=medium
 
   * New upstream version 1.0.10
